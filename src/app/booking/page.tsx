@@ -73,16 +73,7 @@ function BookingPageContent() {
     termsAccepted: false
   })
 
-  useEffect(() => {
-    if (carId) {
-      const car = carsData.find(c => c.id.toString() === carId)
-      if (car) {
-        setSelectedCar(car)
-        setBookingData(prev => ({ ...prev, carId }))
-        setCurrentStep(2) // Skip to booking details if car is pre-selected
-      }
-    }
-  }, [carId])
+
 
   const calculateTotal = () => {
     if (!selectedCar || !bookingData.pickupDate || !bookingData.returnDate) return 0
