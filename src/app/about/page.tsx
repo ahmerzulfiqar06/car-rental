@@ -1,16 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion/client'
+import { motion } from 'framer-motion'
 import {
-  Award,
   Users,
   Shield,
   Star,
-  CheckCircle,
-  Target,
   Heart,
   Globe,
-  Clock,
   Car,
   Trophy,
   MapPin
@@ -175,7 +171,7 @@ export default function AboutPage() {
                   grown into a trusted name in luxury transportation.
                 </p>
                 <p>
-                  We believe that every journey should be memorable. Whether you're celebrating
+                  We believe that every journey should be memorable. Whether you&apos;re celebrating
                   a special occasion, conducting business, or simply want to experience the thrill
                   of driving a luxury vehicle, we provide the perfect vehicle and impeccable service
                   to make it happen.

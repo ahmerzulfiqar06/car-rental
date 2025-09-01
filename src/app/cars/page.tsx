@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion/client'
-import { Search, Filter, SlidersHorizontal, X, Star, Fuel, Users, Settings } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Search, SlidersHorizontal, Star, Fuel, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
@@ -235,7 +235,7 @@ export default function CarsPage() {
   const [showFilters, setShowFilters] = useState(false)
 
   const filteredAndSortedCars = useMemo(() => {
-    let filtered = carsData.filter((car) => {
+    const filtered = carsData.filter((car) => {
       const matchesSearch = car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           car.category.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesCategory = selectedCategory === 'All' || car.category === selectedCategory

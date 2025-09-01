@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion/client'
-import { Star, Fuel, Users, Settings } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Star } from 'lucide-react'
 import Image from 'next/image'
 
 const featuredCars = [

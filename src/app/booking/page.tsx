@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion/client'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Car,
   User,
@@ -10,17 +10,22 @@ import {
   ArrowRight,
   ArrowLeft,
   Calendar,
-  MapPin,
-  Clock,
-  Shield,
-  Star
+  Shield
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
 
 // Car data - in a real app, this would come from an API
-const carsData = [
+interface Car {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+}
+
+const carsData: Car[] = [
   {
     id: 1,
     name: 'Lamborghini Huracan',
@@ -47,7 +52,7 @@ const steps = [
 
 function BookingPageContent() {
   const [currentStep, setCurrentStep] = useState(1)
-  const [selectedCar, setSelectedCar] = useState<any>(null)
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null)
 
   // Form data
   const [bookingData, setBookingData] = useState({
@@ -98,7 +103,7 @@ function BookingPageContent() {
     }
   }
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | boolean) => {
     setBookingData(prev => ({ ...prev, [field]: value }))
   }
 
@@ -432,7 +437,7 @@ function BookingPageContent() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 mb-2">
-                          Driver's License Number *
+                          Driver&apos;s License Number *
                         </label>
                         <input
                           type="text"

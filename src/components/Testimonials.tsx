@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion/client'
+import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
+import Image from 'next/image'
 
 const testimonials = [
   {
@@ -76,7 +77,7 @@ export function Testimonials() {
             What Our <span className="text-primary-600">Customers Say</span>
           </h2>
           <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers
+            Don&apos;t just take our word for it. Here&apos;s what our satisfied customers
             have to say about their experience with EliteDrive.
           </p>
         </motion.div>
@@ -104,7 +105,7 @@ export function Testimonials() {
 
               {/* Testimonial Text */}
               <p className="text-secondary-700 mb-6 leading-relaxed">
-                "{testimonial.text}"
+                &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Vehicle */}
@@ -114,9 +115,11 @@ export function Testimonials() {
 
               {/* Customer Info */}
               <div className="flex items-center space-x-3">
-                <img
+                <Image
                   src={testimonial.image}
                   alt={testimonial.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion/client'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 
@@ -15,7 +15,7 @@ const contactInfo = [
     icon: Mail,
     title: 'Email',
     details: ['info@elitedrive.com', 'support@elitedrive.com'],
-    description: 'Send us an email and we\'ll respond within 24 hours'
+    description: 'Send us an email and we&apos;ll respond within 24 hours'
   },
   {
     icon: MapPin,
@@ -27,7 +27,7 @@ const contactInfo = [
     icon: Clock,
     title: 'Business Hours',
     details: ['Mon-Fri: 8AM - 8PM', 'Sat-Sun: 9AM - 6PM'],
-    description: 'We\'re here when you need us'
+    description: 'We&apos;re here when you need us'
   }
 ]
 
@@ -116,7 +116,7 @@ export function Contact() {
                   </div>
                   <h3 className="text-2xl font-bold text-secondary-900 mb-4">Message Sent!</h3>
                   <p className="text-secondary-600">
-                    Thank you for contacting us. We'll get back to you within 24 hours.
+                    Thank you for contacting us. We&apos;ll get back to you within 24 hours.
                   </p>
                 </motion.div>
               ) : (
@@ -255,7 +255,7 @@ export function Contact() {
                 Contact Information
               </h3>
               <p className="text-secondary-600 mb-8">
-                Reach out to us through any of these channels. We're here to help you
+                Reach out to us through any of these channels. We&apos;re here to help you
                 find the perfect luxury vehicle for your needs.
               </p>
             </div>

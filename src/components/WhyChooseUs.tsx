@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion/client'
+import { motion } from 'framer-motion'
 import { Award, Users, Clock, Star, CheckCircle, TrendingUp } from 'lucide-react'
 
 const reasons = [
@@ -65,7 +65,7 @@ export function WhyChooseUs() {
           </h2>
           <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
             Discover what sets us apart in the luxury car rental industry.
-            We're committed to providing exceptional service and unforgettable experiences.
+            We&apos;re committed to providing exceptional service and unforgettable experiences.
           </p>
         </motion.div>
 
@@ -141,7 +141,7 @@ export function WhyChooseUs() {
             </h3>
             <p className="text-lg mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed">
               To redefine luxury transportation by providing unparalleled service,
-              premium vehicles, and memorable experiences that exceed our customers'
+              premium vehicles, and memorable experiences that exceed our customers&apos;
               expectations. We believe that every journey should be extraordinary.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
