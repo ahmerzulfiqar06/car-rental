@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Car, Shield, Clock, MapPin, CreditCard, Headphones } from 'lucide-react'
+import Link from 'next/link'
 
 const services = [
   {
@@ -44,7 +45,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 bg-secondary-50">
+    <section className="py-20 bg-secondary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -126,13 +127,15 @@ export function Services() {
               Join thousands of satisfied customers who trust us with their premium transportation needs.
               Book your luxury vehicle today and elevate your journey.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-primary-600 hover:bg-secondary-50 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg"
-            >
-              Start Your Journey
-            </motion.button>
+            <Link href="/booking">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-primary-600 hover:bg-secondary-50 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg"
+              >
+                Book Your Luxury Vehicle
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

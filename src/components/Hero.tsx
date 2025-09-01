@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowRight, Star, Shield, Clock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const heroImages = [
   'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1920&h=1080&fit=crop',
@@ -102,21 +103,25 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary text-lg px-8 py-4 flex items-center space-x-2"
-            >
-              <span>Explore Our Fleet</span>
-              <ArrowRight className="h-5 w-5" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-secondary text-lg px-8 py-4"
-            >
-              Learn More
-            </motion.button>
+            <Link href="/cars">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary text-lg px-8 py-4 flex items-center space-x-2"
+              >
+                <span>Explore Our Fleet</span>
+                <ArrowRight className="h-5 w-5" />
+              </motion.button>
+            </Link>
+            <Link href="/about">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-secondary text-lg px-8 py-4"
+              >
+                Learn More
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Trust Indicators */}

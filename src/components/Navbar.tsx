@@ -12,9 +12,9 @@ export function Navbar() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Cars', href: '/cars' },
-    { name: 'Services', href: '#services' },
+    { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (
@@ -134,13 +134,15 @@ export function Navbar() {
               <Phone className="h-4 w-4" />
               <span className="text-sm">+1 (555) 123-4567</span>
             </div>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary"
-            >
-              Book Now
-            </motion.button>
+            <Link href="/booking">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary"
+              >
+                Book Now
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -179,14 +181,16 @@ export function Navbar() {
                   <Phone className="h-4 w-4" />
                   <span className="text-sm">+1 (555) 123-4567</span>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full btn-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Book Now
-                </motion.button>
+                <Link href="/booking">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full btn-primary"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Book Now
+                  </motion.button>
+                </Link>
               </div>
             </div>
           </motion.div>
