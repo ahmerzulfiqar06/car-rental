@@ -1,6 +1,3 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Star,
@@ -117,53 +114,41 @@ const carsData = [
   // Add more cars as needed...
 ]
 
+// Generate static params for all cars
 export async function generateStaticParams() {
   return carsData.map((car) => ({
     id: car.id.toString(),
   }))
 }
 
-export default function CarDetailPage() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isFavorite, setIsFavorite] = useState(false)
-  const [checkInDate, setCheckInDate] = useState('')
-  const [checkOutDate, setCheckOutDate] = useState('')
-  const [carId, setCarId] = useState<number | null>(null)
+interface PageProps {
+  params: {
+    id: string
+  }
+}
 
-  useEffect(() => {
-    // Get car ID from URL hash or default to first car
-    const hash = window.location.hash.substring(1)
-    const id = hash ? parseInt(hash) : 1
-    setCarId(id)
-  }, [])
-
+export default function CarDetailPage({ params }: PageProps) {
+  const carId = parseInt(params.id)
   const car = carsData.find(c => c.id === carId)
 
   if (!car) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-secondary-50">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-secondary-900 mb-4">Car Not Found</h1>
-          <p className="text-secondary-600 mb-6">The vehicle you're looking for doesn't exist.</p>
-          <Link href="/cars" className="btn-primary">
-            Back to Cars
-          </Link>
+      <div className="min-h-screen bg-secondary-50 pt-26">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-[50vh]">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-secondary-900 mb-4">Car Not Found</h1>
+            <p className="text-secondary-600 mb-6">The vehicle you're looking for doesn't exist.</p>
+            <Link href="/cars" className="btn-primary">
+              Back to Cars
+            </Link>
+          </div>
         </div>
       </div>
     )
   }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % car.images.length)
-  }
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + car.images.length) % car.images.length)
-  }
-
-  const totalPrice = checkInDate && checkOutDate
-    ? Math.ceil((new Date(checkOutDate).getTime() - new Date(checkInDate).getTime()) / (1000 * 60 * 60 * 24)) * car.price
-    : 0
 
   return (
     <div className="min-h-screen bg-secondary-50 pt-26">
@@ -191,7 +176,7 @@ export default function CarDetailPage() {
             {/* Main Image */}
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src={car.images[currentImageIndex]}
+                src={car.images[0]}
                 alt={car.name}
                 fill
                 className="object-cover"
@@ -204,64 +189,16 @@ export default function CarDetailPage() {
                 </div>
               )}
 
-              {/* Navigation Arrows */}
-              {car.images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-colors"
-                  >
-                    <ChevronLeft className="h-5 w-5 text-secondary-700" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-colors"
-                  >
-                    <ChevronRight className="h-5 w-5 text-secondary-700" />
-                  </button>
-                </>
-              )}
-
               {/* Action Buttons */}
               <div className="absolute top-4 right-4 flex space-x-2">
-                <button
-                  onClick={() => setIsFavorite(!isFavorite)}
-                  className={`p-2 rounded-full shadow-lg transition-colors ${
-                    isFavorite ? 'bg-red-500 text-white' : 'bg-white/90 backdrop-blur-sm text-secondary-700'
-                  }`}
-                >
-                  <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} />
-                </button>
-                <button className="p-2 bg-white/90 backdrop-blur-sm text-secondary-700 rounded-full shadow-lg hover:bg-white transition-colors">
+                <div className="p-2 bg-white/90 backdrop-blur-sm text-secondary-700 rounded-full">
+                  <Heart className="h-5 w-5" />
+                </div>
+                <div className="p-2 bg-white/90 backdrop-blur-sm text-secondary-700 rounded-full">
                   <Share2 className="h-5 w-5" />
-                </button>
+                </div>
               </div>
             </div>
-
-            {/* Thumbnail Images */}
-            {car.images.length > 1 && (
-              <div className="flex space-x-2 overflow-x-auto pb-2">
-                {car.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                      index === currentImageIndex
-                        ? 'border-primary-500'
-                        : 'border-transparent hover:border-secondary-300'
-                    }`}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${car.name} ${index + 1}`}
-                      width={80}
-                      height={80}
-                      className="object-cover w-full h-full"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
           </motion.div>
 
           {/* Car Details */}
@@ -311,55 +248,32 @@ export default function CarDetailPage() {
               </div>
             </div>
 
-            {/* Booking Form */}
+            {/* Booking Info */}
             <div className="bg-white rounded-xl p-6 shadow-lg border border-secondary-200">
-              <h3 className="text-xl font-bold text-secondary-900 mb-6">Book This Car</h3>
+              <h3 className="text-xl font-bold text-secondary-900 mb-4">Book This Car</h3>
 
-              <div className="space-y-4 mb-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-secondary-700 mb-2">
-                      Pick-up Date
-                    </label>
-                    <input
-                      type="date"
-                      value={checkInDate}
-                      onChange={(e) => setCheckInDate(e.target.value)}
-                      className="w-full px-3 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-secondary-700 mb-2">
-                      Return Date
-                    </label>
-                    <input
-                      type="date"
-                      value={checkOutDate}
-                      onChange={(e) => setCheckOutDate(e.target.value)}
-                      className="w-full px-3 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    />
-                  </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-secondary-600">Daily Rate:</span>
+                  <span className="text-xl font-bold text-primary-600">${car.price}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-secondary-600">Availability:</span>
+                  <span className={`font-medium ${car.availability ? 'text-green-600' : 'text-red-600'}`}>
+                    {car.availability ? 'Available' : 'Unavailable'}
+                  </span>
                 </div>
               </div>
 
-              {totalPrice > 0 && (
-                <div className="bg-secondary-50 rounded-lg p-4 mb-6">
-                  <div className="flex justify-between items-center">
-                    <span className="text-secondary-700">Total Price:</span>
-                    <span className="text-2xl font-bold text-primary-600">${totalPrice}</span>
-                  </div>
-                </div>
-              )}
-
               <Link
-                href={`/booking?car=${car.id}&pickup=${checkInDate}&return=${checkOutDate}`}
+                href="/booking"
                 className={`block w-full py-3 px-6 rounded-lg font-semibold text-center transition-colors ${
-                  car.availability && checkInDate && checkOutDate
+                  car.availability
                     ? 'bg-primary-600 hover:bg-primary-700 text-white'
                     : 'bg-secondary-300 text-secondary-500 cursor-not-allowed pointer-events-none'
                 }`}
               >
-                {car.availability ? 'Reserve Now' : 'Currently Unavailable'}
+                {car.availability ? 'Book Now' : 'Currently Unavailable'}
               </Link>
             </div>
           </motion.div>
