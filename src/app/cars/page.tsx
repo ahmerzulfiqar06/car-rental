@@ -521,7 +521,7 @@ export default function CarsPage() {
                 {/* CTA Buttons */}
                 <div className="flex space-x-2">
                   <Link
-                    href={`/cars/${car.id}`}
+                    href={`/cars/1#${car.id}`}
                     className="flex-1 bg-secondary-900 hover:bg-secondary-800 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 text-center text-sm"
                   >
                     View Details

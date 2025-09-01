@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import {
   Star,
@@ -119,12 +118,18 @@ const carsData = [
 ]
 
 export default function CarDetailPage() {
-  const params = useParams()
-  const carId = parseInt(params.id as string)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isFavorite, setIsFavorite] = useState(false)
   const [checkInDate, setCheckInDate] = useState('')
   const [checkOutDate, setCheckOutDate] = useState('')
+  const [carId, setCarId] = useState<number | null>(null)
+
+  useEffect(() => {
+    // Get car ID from URL hash or default to first car
+    const hash = window.location.hash.substring(1)
+    const id = hash ? parseInt(hash) : 1
+    setCarId(id)
+  }, [])
 
   const car = carsData.find(c => c.id === carId)
 
