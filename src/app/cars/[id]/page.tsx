@@ -117,6 +117,12 @@ const carsData = [
   // Add more cars as needed...
 ]
 
+export async function generateStaticParams() {
+  return carsData.map((car) => ({
+    id: car.id.toString(),
+  }))
+}
+
 export default function CarDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isFavorite, setIsFavorite] = useState(false)
