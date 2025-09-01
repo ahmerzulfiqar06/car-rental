@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -46,7 +46,7 @@ const steps = [
   { id: 5, name: 'Confirmation', icon: CheckCircle }
 ]
 
-export default function BookingPage() {
+function BookingPageContent() {
   const searchParams = useSearchParams()
   const carId = searchParams.get('car')
   const [currentStep, setCurrentStep] = useState(1)
@@ -712,5 +712,23 @@ export default function BookingPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-secondary-50 pt-26">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-[50vh]">
+          <div className="text-center">
+            <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-secondary-600">Loading booking page...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <BookingPageContent />
+    </Suspense>
   )
 }
