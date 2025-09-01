@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/client'
 import { Award, Users, Clock, Star, CheckCircle, TrendingUp } from 'lucide-react'
 
 const reasons = [

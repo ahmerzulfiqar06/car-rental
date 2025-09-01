@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion/client'
 import { useState, useEffect } from 'react'
 import { ArrowRight, Star, Shield, Clock } from 'lucide-react'
 import Image from 'next/image'

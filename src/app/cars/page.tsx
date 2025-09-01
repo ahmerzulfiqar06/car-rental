@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/client'
 import { Search, Filter, SlidersHorizontal, X, Star, Fuel, Users, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

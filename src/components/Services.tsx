@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/client'
 import { Car, Shield, Clock, MapPin, CreditCard, Headphones } from 'lucide-react'
 
 const services = [
