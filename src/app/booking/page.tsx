@@ -10,7 +10,10 @@ import {
   ArrowRight,
   ArrowLeft,
   Calendar,
-  Shield
+  Shield,
+  Star,
+  MapPin,
+  Clock
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -23,6 +26,8 @@ interface Car {
   price: number;
   image: string;
   category: string;
+  rating: number;
+  reviews: number;
 }
 
 const carsData: Car[] = [
@@ -31,14 +36,18 @@ const carsData: Car[] = [
     name: 'Lamborghini Huracan',
     price: 299,
     image: 'https://images.unsplash.com/photo-1544829099-b9a0e3421cbd?w=800&h=600&fit=crop',
-    category: 'Sports Car'
+    category: 'Sports Car',
+    rating: 5.0,
+    reviews: 128
   },
   {
     id: 2,
     name: 'Mercedes-Benz S-Class',
     price: 189,
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop',
-    category: 'Luxury Sedan'
+    category: 'Luxury Sedan',
+    rating: 4.9,
+    reviews: 256
   }
 ]
 
@@ -179,29 +188,29 @@ function BookingPageContent() {
               ></div>
 
               <div className="flex items-center justify-between relative">
-                {steps.map((step, index) => (
+            {steps.map((step, index) => (
                   <div key={step.id} className="flex flex-col items-center">
-                    <motion.div
-                      initial={{ scale: 0.8 }}
-                      animate={{
-                        scale: currentStep >= step.id ? 1 : 0.8,
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  animate={{
+                    scale: currentStep >= step.id ? 1 : 0.8,
                         backgroundColor: currentStep >= step.id ? '#3b82f6' : '#e5e7eb',
                         borderColor: currentStep >= step.id ? '#3b82f6' : '#d1d5db'
-                      }}
+                  }}
                       className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold border-2 shadow-lg relative z-10"
-                    >
-                      {currentStep > step.id ? (
-                        <CheckCircle className="h-6 w-6" />
-                      ) : (
-                        <step.icon className="h-5 w-5" />
-                      )}
-                    </motion.div>
+                >
+                  {currentStep > step.id ? (
+                    <CheckCircle className="h-6 w-6" />
+                  ) : (
+                    <step.icon className="h-5 w-5" />
+                  )}
+                </motion.div>
                     <div className="mt-3 text-center">
                       <span className={`text-sm font-medium block ${
-                        currentStep >= step.id ? 'text-primary-600' : 'text-secondary-400'
-                      }`}>
-                        {step.name}
-                      </span>
+                  currentStep >= step.id ? 'text-primary-600' : 'text-secondary-400'
+                }`}>
+                  {step.name}
+                </span>
                       <span className="text-xs text-secondary-500 mt-1 block">
                         Step {step.id}
                       </span>
@@ -322,30 +331,30 @@ function BookingPageContent() {
                         <Calendar className="h-5 w-5 mr-2 text-primary-600" />
                         Rental Period
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="block text-sm font-medium text-secondary-700">
-                            Pick-up Date *
-                          </label>
-                          <input
-                            type="date"
-                            value={bookingData.pickupDate}
-                            onChange={(e) => handleInputChange('pickupDate', e.target.value)}
-                            min={new Date().toISOString().split('T')[0]}
+                          Pick-up Date *
+                        </label>
+                        <input
+                          type="date"
+                          value={bookingData.pickupDate}
+                          onChange={(e) => handleInputChange('pickupDate', e.target.value)}
+                          min={new Date().toISOString().split('T')[0]}
                             className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
+                        />
+                      </div>
                         <div className="space-y-2">
                           <label className="block text-sm font-medium text-secondary-700">
-                            Return Date *
-                          </label>
-                          <input
-                            type="date"
-                            value={bookingData.returnDate}
-                            onChange={(e) => handleInputChange('returnDate', e.target.value)}
-                            min={bookingData.pickupDate || new Date().toISOString().split('T')[0]}
+                          Return Date *
+                        </label>
+                        <input
+                          type="date"
+                          value={bookingData.returnDate}
+                          onChange={(e) => handleInputChange('returnDate', e.target.value)}
+                          min={bookingData.pickupDate || new Date().toISOString().split('T')[0]}
                             className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                          />
+                        />
                         </div>
                       </div>
 
@@ -370,34 +379,34 @@ function BookingPageContent() {
                         <MapPin className="h-5 w-5 mr-2 text-primary-600" />
                         Locations
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="block text-sm font-medium text-secondary-700">
-                            Pick-up Location
-                          </label>
-                          <select
-                            value={bookingData.pickupLocation}
-                            onChange={(e) => handleInputChange('pickupLocation', e.target.value)}
+                          Pick-up Location
+                        </label>
+                        <select
+                          value={bookingData.pickupLocation}
+                          onChange={(e) => handleInputChange('pickupLocation', e.target.value)}
                             className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                           >
                             <option value="downtown">🏙️ Downtown Location</option>
                             <option value="airport">✈️ Airport Terminal</option>
                             <option value="uptown">🏢 Uptown Office</option>
-                          </select>
-                        </div>
+                        </select>
+                      </div>
                         <div className="space-y-2">
                           <label className="block text-sm font-medium text-secondary-700">
-                            Return Location
-                          </label>
-                          <select
-                            value={bookingData.returnLocation}
-                            onChange={(e) => handleInputChange('returnLocation', e.target.value)}
+                          Return Location
+                        </label>
+                        <select
+                          value={bookingData.returnLocation}
+                          onChange={(e) => handleInputChange('returnLocation', e.target.value)}
                             className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                           >
                             <option value="downtown">🏙️ Downtown Location</option>
                             <option value="airport">✈️ Airport Terminal</option>
                             <option value="uptown">🏢 Uptown Office</option>
-                          </select>
+                        </select>
                         </div>
                       </div>
                     </div>
@@ -748,16 +757,16 @@ function BookingPageContent() {
                             <div className="text-green-600 font-medium">Return</div>
                             <div className="text-secondary-900">{bookingData.returnDate}</div>
                             <div className="text-xs text-secondary-600">{bookingData.returnLocation}</div>
-                          </div>
-                        </div>
+                      </div>
+                      </div>
 
                         <div className="border-t border-secondary-200 pt-4">
                           <div className="flex justify-between items-center">
                             <span className="text-secondary-600">Total Amount:</span>
                             <span className="text-2xl font-bold text-primary-600">${calculateTotal()}</span>
-                          </div>
-                        </div>
                       </div>
+                    </div>
+                  </div>
                     )}
                   </motion.div>
 
@@ -771,8 +780,8 @@ function BookingPageContent() {
                       href="/"
                       className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
-                      Back to Home
-                    </Link>
+                    Back to Home
+                  </Link>
                     <Link
                       href="/cars"
                       className="bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 font-semibold py-3 px-8 rounded-xl transition-all duration-200"
@@ -808,13 +817,13 @@ function BookingPageContent() {
                   <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-4">
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-md">
-                        <Image
-                          src={selectedCar.image}
-                          alt={selectedCar.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+                      <Image
+                        src={selectedCar.image}
+                        alt={selectedCar.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                       <div className="flex-1">
                         <h4 className="font-bold text-secondary-900 text-sm">{selectedCar.name}</h4>
                         <p className="text-xs text-secondary-600">{selectedCar.category}</p>
@@ -828,39 +837,39 @@ function BookingPageContent() {
 
                   {/* Pricing Breakdown */}
                   <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Daily Rate:</span>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-secondary-600">Daily Rate:</span>
                       <span className="font-medium">${selectedCar.price}</span>
-                    </div>
+                      </div>
 
-                    {bookingData.pickupDate && bookingData.returnDate && (
-                      <>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-secondary-600">Duration:</span>
+                      {bookingData.pickupDate && bookingData.returnDate && (
+                        <>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-secondary-600">Duration:</span>
                           <span className="font-medium">
-                            {Math.ceil(
-                              (new Date(bookingData.returnDate).getTime() - new Date(bookingData.pickupDate).getTime())
-                              / (1000 * 60 * 60 * 24)
-                            )} days
-                          </span>
-                        </div>
+                              {Math.ceil(
+                                (new Date(bookingData.returnDate).getTime() - new Date(bookingData.pickupDate).getTime())
+                                / (1000 * 60 * 60 * 24)
+                              )} days
+                            </span>
+                          </div>
 
                         <div className="border-t border-secondary-200 pt-3">
                           <div className="flex justify-between text-lg font-bold">
                             <span>Total Amount:</span>
                             <span className="text-primary-600">${calculateTotal()}</span>
                           </div>
-                        </div>
-                      </>
-                    )}
+                          </div>
+                        </>
+                      )}
                   </div>
 
                   {/* Benefits */}
                   <div className="space-y-3">
                     <div className="bg-green-50 rounded-lg p-3">
                       <div className="flex items-center space-x-2 text-sm text-green-700">
-                        <Shield className="h-4 w-4" />
-                        <span>Full insurance included</span>
+                      <Shield className="h-4 w-4" />
+                      <span>Full insurance included</span>
                       </div>
                     </div>
 
@@ -930,19 +939,19 @@ function BookingPageContent() {
                 )}
               </div>
 
-              <button
-                onClick={currentStep === 4 ? handleSubmit : nextStep}
-                disabled={!isStepValid()}
+            <button
+              onClick={currentStep === 4 ? handleSubmit : nextStep}
+              disabled={!isStepValid()}
                 className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-200 ${
-                  !isStepValid()
-                    ? 'bg-secondary-300 text-secondary-500 cursor-not-allowed'
+                !isStepValid()
+                  ? 'bg-secondary-300 text-secondary-500 cursor-not-allowed'
                     : 'bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
-                }`}
-              >
+              }`}
+            >
                 <span>{currentStep === 4 ? 'Complete Booking' : 'Continue'}</span>
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            </div>
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </div>
           </motion.div>
         )}
       </div>
