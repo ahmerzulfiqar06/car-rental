@@ -343,7 +343,7 @@ function BookingPageContent() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredCars.map((car) => (
+                    {filteredCars.map((car, index) => (
                       <motion.div
                         key={car.id}
                         whileHover={{ scale: 1.02, y: -5 }}

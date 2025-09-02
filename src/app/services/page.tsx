@@ -265,7 +265,7 @@ export default function ServicesPage() {
                 What Our <span className="text-primary-600">Customers Say</span>
               </h2>
               <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
-                Don't just take our word for it - hear from our satisfied customers
+                Don&apos;t just take our word for it - hear from our satisfied customers
               </p>
             </motion.div>
 
@@ -303,7 +303,7 @@ export default function ServicesPage() {
                       <span key={i} className="text-yellow-400">⭐</span>
                     ))}
                   </div>
-                  <p className="text-secondary-700 mb-6 italic">"{testimonial.content}"</p>
+                  <p className="text-secondary-700 mb-6 italic">&ldquo;{testimonial.content}&rdquo;</p>
                   <div>
                     <div className="font-bold text-secondary-900">{testimonial.name}</div>
                     <div className="text-sm text-secondary-600">{testimonial.role}</div>

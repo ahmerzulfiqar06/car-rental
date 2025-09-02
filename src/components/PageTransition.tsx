@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 interface PageTransitionProps {
   children: ReactNode
@@ -10,12 +10,11 @@ interface PageTransitionProps {
 
 export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname()
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Simulate page loading
+    // Simulate page loading - no state needed for this simple transition
     const timer = setTimeout(() => {
-      setIsLoading(false)
+      // Page transition timing
     }, 300)
 
     return () => clearTimeout(timer)
