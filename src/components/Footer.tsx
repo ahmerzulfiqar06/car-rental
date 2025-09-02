@@ -1,23 +1,23 @@
 import Link from 'next/link'
-import { Car, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react'
+import { Car, Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 
 const footerLinks = {
   company: [
-    { name: 'About Us', href: '#about' },
-    { name: 'Our Fleet', href: '#cars' },
-    { name: 'Services', href: '#services' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Our Fleet', href: '/cars' },
+    { name: 'Services', href: '/services' },
     { name: 'Careers', href: '#' },
   ],
   services: [
-    { name: 'Luxury Rentals', href: '#cars' },
-    { name: 'Airport Transfer', href: '#services' },
-    { name: 'Chauffeur Service', href: '#services' },
-    { name: 'Corporate Fleet', href: '#services' },
+    { name: 'Luxury Rentals', href: '/cars' },
+    { name: 'Airport Transfer', href: '/services' },
+    { name: 'Chauffeur Service', href: '/services' },
+    { name: 'Corporate Fleet', href: '/services' },
   ],
   support: [
-    { name: 'Contact Us', href: '#contact' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Booking Guide', href: '#' },
+    { name: 'Contact Us', href: '/contact' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Booking Guide', href: '/booking' },
     { name: 'Terms of Service', href: '#' },
   ],
   legal: [
@@ -29,10 +29,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
+  { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/elitedrive' },
+  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/elitedrive' },
+  { name: 'TikTok', icon: Youtube, href: 'https://tiktok.com/@elitedrive' },
 ]
 
 export function Footer() {
@@ -171,14 +170,16 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
-                <Link
+                <a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors duration-200"
                   aria-label={social.name}
                 >
                   <social.icon className="h-5 w-5" />
-                </Link>
+                </a>
               ))}
             </div>
           </div>
