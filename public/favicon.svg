@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <style>
+      .car-body { fill: #3b82f6; }
+      .car-window { fill: #60a5fa; opacity: 0.7; }
+      .car-wheel { fill: #1f2937; }
+      .car-accent { fill: #f59e0b; }
+    </style>
+  </defs>
+
+  <!-- Car Body -->
+  <path class="car-body" d="M8 16 L24 16 L26 18 L28 20 L28 22 L26 24 L24 24 L22 26 L10 26 L8 24 L6 24 L4 22 L4 20 L6 18 Z"/>
+
+  <!-- Car Windows -->
+  <path class="car-window" d="M10 18 L22 18 L24 20 L22 22 L10 22 L8 20 Z"/>
+
+  <!-- Wheels -->
+  <circle class="car-wheel" cx="10" cy="24" r="3"/>
+  <circle class="car-wheel" cx="22" cy="24" r="3"/>
+  <circle class="car-accent" cx="10" cy="24" r="1"/>
+  <circle class="car-accent" cx="22" cy="24" r="1"/>
+
+  <!-- Headlights -->
+  <circle class="car-accent" cx="6" cy="20" r="1"/>
+  <circle class="car-accent" cx="26" cy="20" r="1"/>
+
+  <!-- Grille -->
+  <rect class="car-accent" x="7" y="18" width="2" height="1"/>
+  <rect class="car-accent" x="11" y="18" width="2" height="1"/>
+  <rect class="car-accent" x="15" y="18" width="2" height="1"/>
+  <rect class="car-accent" x="19" y="18" width="2" height="1"/>
+  <rect class="car-accent" x="23" y="18" width="2" height="1"/>
+</svg>

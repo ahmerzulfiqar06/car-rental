@@ -101,7 +101,7 @@ const milestones = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-secondary-50 pt-32">
+    <div className="min-h-screen bg-secondary-50 pt-24">
       <Navbar />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900 text-white pt-20 pb-20">

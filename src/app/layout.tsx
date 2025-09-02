@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   keywords: 'car rental, luxury cars, premium vehicles, rental service, luxury transportation',
   authors: [{ name: 'Elite Car Rental' }],
   robots: 'index, follow',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Elite Car Rental | Premium Luxury Vehicles',
     description: 'Experience luxury car rental with our premium fleet.',

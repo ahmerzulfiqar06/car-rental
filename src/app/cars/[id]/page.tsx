@@ -118,7 +118,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
   if (!car) {
     return (
-      <div className="min-h-screen bg-secondary-50 pt-26">
+      <div className="min-h-screen bg-secondary-50 pt-24">
         <Navbar />
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
@@ -136,7 +136,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
 
   return (
-    <div className="min-h-screen bg-secondary-50 pt-26">
+    <div className="min-h-screen bg-secondary-50 pt-24">
       <Navbar />
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

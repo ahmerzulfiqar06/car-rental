@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-secondary-100">
       <Navbar />
-      <main className="pt-32">
+      <main className="pt-24">
         <Hero />
         <FeaturedCars />
         <Services />

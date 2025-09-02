@@ -269,7 +269,7 @@ export default function CarsPage() {
   }, [searchTerm, selectedCategory, selectedPriceRange, selectedLocation, sortBy])
 
   return (
-    <div className="min-h-screen bg-secondary-50 pt-32">
+    <div className="min-h-screen bg-secondary-50 pt-24">
       <Navbar />
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-secondary-200">
