@@ -197,7 +197,7 @@ function BookingPageContent() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-secondary-100 pt-24">
-        <Navbar />
+      <Navbar />
       {/* Header */}
       <div className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-secondary-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -270,8 +270,8 @@ function BookingPageContent() {
                         Step {step.id}
                       </span>
                     </div>
-                  </div>
-                ))}
+              </div>
+            ))}
               </div>
             </div>
           </div>
@@ -501,8 +501,8 @@ function BookingPageContent() {
                           min={bookingData.pickupDate || new Date().toISOString().split('T')[0]}
                             className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                         />
-                        </div>
                       </div>
+                    </div>
 
                       {bookingData.pickupDate && bookingData.returnDate && (
                         <div className="mt-4 p-3 bg-white/70 rounded-lg">
@@ -886,24 +886,24 @@ function BookingPageContent() {
                               fill
                               className="object-cover"
                             />
-                          </div>
+                      </div>
                           <div className="flex-1 text-left">
                             <h4 className="font-bold text-secondary-900">{selectedCar.name}</h4>
                             <p className="text-sm text-secondary-600">{selectedCar.category}</p>
-                          </div>
-                        </div>
+                      </div>
+                      </div>
 
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div className="bg-blue-50 p-3 rounded-lg">
                             <div className="text-blue-600 font-medium">Pick-up</div>
                             <div className="text-secondary-900">{bookingData.pickupDate}</div>
                             <div className="text-xs text-secondary-600">{bookingData.pickupLocation}</div>
-                          </div>
+                    </div>
                           <div className="bg-green-50 p-3 rounded-lg">
                             <div className="text-green-600 font-medium">Return</div>
                             <div className="text-secondary-900">{bookingData.returnDate}</div>
                             <div className="text-xs text-secondary-600">{bookingData.returnLocation}</div>
-                      </div>
+                  </div>
                       </div>
 
                         <div className="border-t border-secondary-200 pt-4">
@@ -933,7 +933,7 @@ function BookingPageContent() {
                       className="bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 font-semibold py-3 px-8 rounded-xl transition-all duration-200"
                     >
                       Book Another Car
-                    </Link>
+                  </Link>
                   </motion.div>
 
                   <motion.div
@@ -1016,8 +1016,8 @@ function BookingPageContent() {
                       <div className="flex items-center space-x-2 text-sm text-green-700">
                       <Shield className="h-4 w-4" />
                       <span>Full insurance included</span>
-                      </div>
                     </div>
+                  </div>
 
                     <div className="bg-blue-50 rounded-lg p-3">
                       <div className="flex items-center space-x-2 text-sm text-blue-700">
@@ -1101,7 +1101,7 @@ function BookingPageContent() {
           </motion.div>
         )}
       </div>
-      </div>
+    </div>
     </PageTransition>
   )
 }

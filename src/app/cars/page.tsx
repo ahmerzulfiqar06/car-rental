@@ -272,7 +272,7 @@ export default function CarsPage() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-secondary-50 pt-24">
-        <Navbar />
+      <Navbar />
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-secondary-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -571,7 +571,7 @@ export default function CarsPage() {
           </motion.div>
         )}
       </div>
-      </div>
+    </div>
     </PageTransition>
   )
 }
