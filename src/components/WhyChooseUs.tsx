@@ -50,7 +50,7 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="pt-0 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div

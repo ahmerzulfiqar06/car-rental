@@ -104,7 +104,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-secondary-50 pt-32">
       <Navbar />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900 text-white py-20">
+      <section className="relative bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900 text-white pt-20 pb-20">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
           backgroundSize: '40px 40px'

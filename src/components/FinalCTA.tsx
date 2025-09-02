@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export function FinalCTA() {
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative pt-0 pb-20 overflow-hidden">
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
