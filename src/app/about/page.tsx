@@ -14,6 +14,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
+import { PageTransition } from '@/components/PageTransition'
 
 const stats = [
   { number: '10+', label: 'Years of Excellence', icon: Trophy },
@@ -55,7 +56,7 @@ const team = [
   {
     name: 'Sarah Johnson',
     role: 'Operations Director',
-    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face',
     bio: 'Sarah ensures every vehicle meets our exacting standards and every customer receives world-class service.'
   },
   {
@@ -101,8 +102,9 @@ const milestones = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-secondary-50 pt-24">
-      <Navbar />
+    <PageTransition>
+      <div className="min-h-screen bg-secondary-50 pt-24">
+        <Navbar />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900 text-white pt-20 pb-20">
         <div className="absolute inset-0 opacity-20" style={{
@@ -365,6 +367,7 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </PageTransition>
   )
 }

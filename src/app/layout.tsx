@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { WhatsAppChat } from '@/components/WhatsAppChat'
+import { LoadingScreen } from '@/components/LoadingScreen'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning={true}>
+        <LoadingScreen />
         {children}
         <WhatsAppChat />
       </body>

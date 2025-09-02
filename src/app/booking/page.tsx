@@ -13,11 +13,13 @@ import {
   Shield,
   Star,
   MapPin,
-  Clock
+  Clock,
+  Filter
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
+import { PageTransition } from '@/components/PageTransition'
 
 // Car data - in a real app, this would come from an API
 interface Car {
@@ -35,7 +37,7 @@ const carsData: Car[] = [
     id: 1,
     name: 'Lamborghini Huracan',
     price: 299,
-    image: 'https://images.unsplash.com/photo-1544829099-b9a0e3421cbd?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop',
     category: 'Sports Car',
     rating: 5.0,
     reviews: 128
@@ -48,6 +50,42 @@ const carsData: Car[] = [
     category: 'Luxury Sedan',
     rating: 4.9,
     reviews: 256
+  },
+  {
+    id: 3,
+    name: 'BMW X5',
+    price: 149,
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop',
+    category: 'SUV',
+    rating: 4.8,
+    reviews: 189
+  },
+  {
+    id: 4,
+    name: 'Porsche 911',
+    price: 349,
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop',
+    category: 'Sports Car',
+    rating: 5.0,
+    reviews: 97
+  },
+  {
+    id: 5,
+    name: 'Audi A8',
+    price: 199,
+    image: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop',
+    category: 'Luxury Sedan',
+    rating: 4.7,
+    reviews: 145
+  },
+  {
+    id: 6,
+    name: 'Range Rover Sport',
+    price: 229,
+    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop',
+    category: 'SUV',
+    rating: 4.8,
+    reviews: 203
   }
 ]
 
@@ -62,6 +100,8 @@ const steps = [
 function BookingPageContent() {
   const [currentStep, setCurrentStep] = useState(1)
   const [selectedCar, setSelectedCar] = useState<Car | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [selectedPriceRange, setSelectedPriceRange] = useState('All')
 
   // Form data
   const [bookingData, setBookingData] = useState({
@@ -122,6 +162,20 @@ function BookingPageContent() {
     setCurrentStep(5)
   }
 
+  // Filter cars based on selected criteria
+  const filteredCars = carsData.filter((car) => {
+    const matchesCategory = selectedCategory === 'All' || car.category === selectedCategory
+    let matchesPrice = true
+    if (selectedPriceRange === 'Under $200') matchesPrice = car.price < 200
+    else if (selectedPriceRange === '$200-$300') matchesPrice = car.price >= 200 && car.price < 300
+    else if (selectedPriceRange === '$300+') matchesPrice = car.price >= 300
+
+    return matchesCategory && matchesPrice
+  })
+
+  const categories = ['All', 'Sports Car', 'Luxury Sedan', 'SUV']
+  const priceRanges = ['All', 'Under $200', '$200-$300', '$300+']
+
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
@@ -141,8 +195,9 @@ function BookingPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-secondary-100 pt-24">
-      <Navbar />
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-secondary-100 pt-24">
+        <Navbar />
       {/* Header */}
       <div className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-secondary-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -240,8 +295,55 @@ function BookingPageContent() {
                     <p className="text-secondary-600">Select the perfect car for your journey</p>
                   </div>
 
+                  {/* Filters */}
+                  <div className="mb-6 bg-white/70 backdrop-blur-sm rounded-xl p-4">
+                    <div className="flex flex-col md:flex-row gap-4 items-center">
+                      <div className="flex items-center space-x-2">
+                        <Filter className="h-5 w-5 text-secondary-600" />
+                        <span className="text-sm font-medium text-secondary-700">Filters:</span>
+                      </div>
+
+                      <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="px-3 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+                      >
+                        {categories.map((category) => (
+                          <option key={category} value={category}>{category}</option>
+                        ))}
+                      </select>
+
+                      <select
+                        value={selectedPriceRange}
+                        onChange={(e) => setSelectedPriceRange(e.target.value)}
+                        className="px-3 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+                      >
+                        {priceRanges.map((range) => (
+                          <option key={range} value={range}>{range}</option>
+                        ))}
+                      </select>
+
+                      <button
+                        onClick={() => {
+                          setSelectedCategory('All')
+                          setSelectedPriceRange('All')
+                        }}
+                        className="text-sm text-primary-600 hover:text-primary-800 underline"
+                      >
+                        Clear filters
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Results count */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <p className="text-secondary-600">
+                      Showing {filteredCars.length} of {carsData.length} vehicles
+                    </p>
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {carsData.map((car) => (
+                    {filteredCars.map((car) => (
                       <motion.div
                         key={car.id}
                         whileHover={{ scale: 1.02, y: -5 }}
@@ -298,6 +400,50 @@ function BookingPageContent() {
                       </motion.div>
                     ))}
                   </div>
+
+                  {/* No results */}
+                  {filteredCars.length === 0 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-center py-12 bg-white/70 backdrop-blur-sm rounded-xl"
+                    >
+                      <Car className="h-16 w-16 text-secondary-300 mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold text-secondary-900 mb-2">No cars found</h3>
+                      <p className="text-secondary-600 mb-6">
+                        Try adjusting your filters to find more vehicles.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setSelectedCategory('All')
+                          setSelectedPriceRange('All')
+                        }}
+                        className="btn-primary"
+                      >
+                        Clear All Filters
+                      </button>
+                    </motion.div>
+                  )}
+
+                  {selectedCar && (
+                    <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2 text-green-800">
+                          <CheckCircle className="h-5 w-5" />
+                          <span className="font-medium">Selected: {selectedCar.name}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            setSelectedCar(null)
+                            handleInputChange('carId', '')
+                          }}
+                          className="text-secondary-600 hover:text-secondary-800 underline text-sm"
+                        >
+                          Clear selection
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   {!selectedCar && (
                     <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
@@ -955,7 +1101,8 @@ function BookingPageContent() {
           </motion.div>
         )}
       </div>
-    </div>
+      </div>
+    </PageTransition>
   )
 }
 

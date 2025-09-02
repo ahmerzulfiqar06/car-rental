@@ -2,6 +2,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
 import { CarDetailClient } from '@/components/CarDetailClient'
+import { PageTransition } from '@/components/PageTransition'
 
 // Car data - in a real app, this would come from an API
 const carsData = [
@@ -118,8 +119,9 @@ export default async function CarDetailPage({ params }: PageProps) {
 
   if (!car) {
     return (
-      <div className="min-h-screen bg-secondary-50 pt-24">
-        <Navbar />
+      <PageTransition>
+        <div className="min-h-screen bg-secondary-50 pt-24">
+          <Navbar />
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-secondary-900 mb-4">Car Not Found</h1>
@@ -129,15 +131,17 @@ export default async function CarDetailPage({ params }: PageProps) {
             </Link>
           </div>
         </div>
-      </div>
+        </div>
+      </PageTransition>
     )
   }
 
 
 
   return (
-    <div className="min-h-screen bg-secondary-50 pt-24">
-      <Navbar />
+    <PageTransition>
+      <div className="min-h-screen bg-secondary-50 pt-24">
+        <Navbar />
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Link
@@ -150,6 +154,7 @@ export default async function CarDetailPage({ params }: PageProps) {
       </div>
 
       <CarDetailClient car={car} />
-    </div>
+      </div>
+    </PageTransition>
   )
 }

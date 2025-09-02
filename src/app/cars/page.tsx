@@ -6,6 +6,7 @@ import { Search, SlidersHorizontal, Star, Fuel, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/Navbar'
+import { PageTransition } from '@/components/PageTransition'
 
 interface Car {
   id: number
@@ -269,8 +270,9 @@ export default function CarsPage() {
   }, [searchTerm, selectedCategory, selectedPriceRange, selectedLocation, sortBy])
 
   return (
-    <div className="min-h-screen bg-secondary-50 pt-24">
-      <Navbar />
+    <PageTransition>
+      <div className="min-h-screen bg-secondary-50 pt-24">
+        <Navbar />
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-secondary-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -569,6 +571,7 @@ export default function CarsPage() {
           </motion.div>
         )}
       </div>
-    </div>
+      </div>
+    </PageTransition>
   )
 }
