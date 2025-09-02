@@ -243,7 +243,7 @@ function BookingPageContent() {
               ></div>
 
               <div className="flex items-center justify-between relative">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
                   <div key={step.id} className="flex flex-col items-center">
                 <motion.div
                   initial={{ scale: 0.8 }}
@@ -343,7 +343,7 @@ function BookingPageContent() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredCars.map((car, index) => (
+                    {filteredCars.map((car) => (
                       <motion.div
                         key={car.id}
                         whileHover={{ scale: 1.02, y: -5 }}

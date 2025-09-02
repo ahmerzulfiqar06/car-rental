@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useEffect } from 'react'
 
@@ -20,51 +20,20 @@ export function PageTransition({ children }: PageTransitionProps) {
     return () => clearTimeout(timer)
   }, [pathname])
 
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      y: 20,
-      scale: 0.98
-    },
-    in: {
-      opacity: 1,
-      y: 0,
-      scale: 1
-    },
-    out: {
-      opacity: 0,
-      y: -20,
-      scale: 1.02
-    }
-  }
-
-  const pageTransition = {
-    type: "tween",
-    ease: "anticipate",
-    duration: 0.6
-  }
-
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={pathname}
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-        className="min-h-screen"
-      >
-        {/* Page Content with Stagger Animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-        >
-          {children}
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut"
+      }}
+      className="min-h-screen"
+    >
+      {children}
+    </motion.div>
   )
 }
 
